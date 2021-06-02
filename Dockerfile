@@ -2,16 +2,13 @@ FROM ros:noetic-ros-base-focal
 
 # TODO: run as user
 # this user needs to be in dialout sudo usermod -a -G dialout 
-
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
     ; apt-get install -y curl git ninja-build stow
 RUN bash -c 'curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - '
 
 RUN bash -c "source /opt/ros/noetic/setup.bash \
-    && mkdir -p /catkin_ws/src \
-    && cd /catkin_ws/ \
-    && catkin_make"
-
+    && mkdir -p /catkin_ws/src"
 WORKDIR /catkin_ws
 
 RUN bash -c "source /opt/ros/noetic/setup.bash \
@@ -29,8 +26,8 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && wstool update -t src \
     && rosdep update \
     && rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y \
-    && ./src/cartographer/scripts/install_abseil.sh \
-    && catkin_make_isolated --install --use-ninja"
+    && ./src/cartographer/scripts/install_abseil.sh"
+    # && catkin_make_isolated --install --use-ninja"
 
 ## install mavproxy and mavros
 RUN bash -c "source /opt/ros/noetic/setup.bash \
