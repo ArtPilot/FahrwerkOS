@@ -43,5 +43,6 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && roscd mavros/launch \
     && sed -i \"/<\/node>/i\\\<remap from=\"\/mavros\/vision_pose\/pose\" to=\"\/robot_pose\" \/\>\" ./node.launch \
     && cd /catkin_ws \
-    && catkin build"
+    && catkin build\
+    && source devel/setup.bash"
 
