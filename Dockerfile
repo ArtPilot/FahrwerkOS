@@ -12,14 +12,12 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
 WORKDIR /catkin_ws
 
 RUN bash -c "source /opt/ros/noetic/setup.bash \
-    && source /catkin_ws/devel/setup.sh \
     && cd src \
     && git clone --depth 1 https://github.com/robopeak/rplidar_ros \
     && git clone --depth 1 https://github.com/GT-RAIL/robot_pose_publisher.git \
     && sed -i 's/is_stamped, false/is_stamped, true/g' robot_pose_publisher/src/robot_pose_publisher.cpp"
 
 RUN bash -c "source /opt/ros/noetic/setup.bash \
-    && source /catkin_ws/devel/setup.sh \
     && apt-get update \
     && wstool init src \
     && wstool merge -t src https://raw.githubusercontent.com/cartographer-project/cartographer_ros/master/cartographer_ros.rosinstall \
@@ -31,7 +29,6 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
 
 ## install mavproxy and mavros
 RUN bash -c "source /opt/ros/noetic/setup.bash \
-    && source /catkin_ws/devel/setup.sh \
     && apt-get install -y python3-dev python3-opencv python3-wxgtk4.0 python3-pip python3-matplotlib python3-lxml python3-pygame \
     && pip3 install PyYAML mavproxy \
     && apt-get install -y ros-noetic-mavros ros-noetic-mavros-extras  python3-catkin-tools python3-catkin-lint python3-pip \
@@ -43,7 +40,6 @@ COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configu
 
 ## install mavproxy and mavros
 RUN bash -c "source /opt/ros/noetic/setup.bash \
-    && source /catkin_ws/devel/setup.sh \
     && roscd mavros/launch \
     && sed -i \"/<\/node>/i\\\<remap from=\"\/mavros\/vision_pose\/pose\" to=\"\/robot_pose\" \/\>\" ./node.launch \
     && cd /catkin_ws \
