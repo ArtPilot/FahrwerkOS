@@ -18,8 +18,8 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && source /catkin_ws/devel/setup.sh \
     && cd src \
     && git clone --depth 1 https://github.com/robopeak/rplidar_ros \
-    && cd .. \
-    && catkin_make"
+    && git clone --depth 1 https://github.com/GT-RAIL/robot_pose_publisher.git \
+    && sed -i 's/is_stamped, false/is_stamped, true/g' robot_pose_publisher/src/robot_pose_publisher.cpp"
 
 RUN bash -c "source /opt/ros/noetic/setup.bash \
     && source /catkin_ws/devel/setup.sh \
@@ -47,9 +47,6 @@ COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configu
 ## install mavproxy and mavros
 RUN bash -c "source /opt/ros/noetic/setup.bash \
     && source /catkin_ws/devel/setup.sh \
-    && cd src \
-    && git clone --depth 1 https://github.com/GT-RAIL/robot_pose_publisher.git \
-    && sed -i 's/is_stamped, false/is_stamped, true/g' robot_pose_publisher/src/robot_pose_publisher.cpp \
     && roscd mavros/launch \
     && sed -i \"/<\/node>/i\\\<remap from=\"\/mavros\/vision_pose\/pose\" to=\"\/robot_pose\" \/\>\" ./node.launch \
     && cd /catkin_ws \
