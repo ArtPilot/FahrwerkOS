@@ -9,6 +9,7 @@ services:
     devices:
       - "/dev/rpilidar:/dev/ttyUSB0"
       - "/dev/ttyS0:/dev/ttyACM0"
+    restart: unless-stopped
 
   # listener:
   #   build: ./
