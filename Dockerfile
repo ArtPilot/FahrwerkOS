@@ -39,7 +39,6 @@ COPY ./cartographer.launch /catkin_ws/src/cartographer_ros/cartographer_ros/laun
 COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configuration_files
 
 RUN bash -c "source /opt/ros/noetic/setup.bash \
-    && source /catkin_ws/devel/setup.bash \
     && apt install -y ros-*-rgbd-launch ros-*-libuvc-camera \
     && cd  /catkin_ws/src \
     && git clone --depth 1 https://github.com/orbbec/ros_astra_camera"
@@ -58,4 +57,4 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && source devel/setup.bash"
 
 RUN apt-get purge -y modemmanager
-COPY bashrc /root/.ros_bashrc
+COPY bashrc.bash /root/.ros_bashrc
