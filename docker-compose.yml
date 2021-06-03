@@ -9,6 +9,8 @@ services:
     devices:
       - "/dev/rpilidar:/dev/ttyUSB0"
       - "/dev/ttyS0:/dev/ttyACM0"
+      - "/dev/astra_pro:/dev/astra_pro"
+      - "/dev/astrauvc:/dev/astrauvc"
     restart: unless-stopped
 
   # listener:
