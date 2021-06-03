@@ -8,6 +8,8 @@ services:
       - "11311:11311"
     devices:
       - "/dev/rpilidar:/dev/ttyUSB0"
+      - "/dev/ttyAMA0:/dev/ttyUSB1"
+
 
   # listener:
   #   build: ./
