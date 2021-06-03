@@ -7,8 +7,8 @@ services:
     ports:
       - "11311:11311"
     devices:
-      - "/dev/rpilidar:/dev/ttyUSB0"
-      - "/dev/ttyAMA0:/dev/ttyUSB1"
+      - "/dev/rpilidar:/dev/rpilidar"
+      - "/dev/ttyAMA0:/dev/serial0"
 
 
   # listener:
