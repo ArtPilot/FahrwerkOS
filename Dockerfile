@@ -7,9 +7,10 @@ RUN apt-get update \
     ; apt-get install -y curl git ninja-build stow
 RUN bash -c 'curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - '
 
-RUN bash -c "source /opt/ros/noetic/setup.bash \
-    && mkdir -p /catkin_ws/src"
+RUN bash -c "mkdir -p /catkin_ws/src \
+             && echo source /opt/ros/noetic/setup.bash >> $HOME/.bashrc"
 WORKDIR /catkin_ws
+COPY dependencies.rosinstall /dependencies.rosinstall
 
 RUN bash -c "source /opt/ros/noetic/setup.bash \
     && cd src \
@@ -56,5 +57,6 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && catkin build\
     && source devel/setup.bash"
 
-RUN apt-get purge -y modemmanager
+RUN apt-get purge -y modemmanager \
+    && apt-get autoremove -y
 COPY bashrc.bash /root/.ros_bashrc
