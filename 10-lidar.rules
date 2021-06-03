@@ -1,0 +1,2 @@
+# put this file into /etc/udev/rules.d on host os
+ACTION=="add", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="rpilidar"
