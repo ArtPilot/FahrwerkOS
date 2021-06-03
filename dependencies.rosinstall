@@ -1,4 +1,5 @@
-- git: {local-name: rplidar_ros, uri: 'https://github.com/robopeak/rplidar_ros', version: 'master'}
-- git: {local-name: robot_pose_publisher, uri: ' https://github.com/GT-RAIL/robot_pose_publisher.git', version: 'master'}
+- git: {local-name: rplidar_ros, uri: 'https://github.com/robopeak/rplidar_ros.git', version: 'master'}
+- git: {local-name: robot_pose_publisher, uri: 'https://github.com/GT-RAIL/robot_pose_publisher.git', version: 'master'}
+- git: {local-name: ros_astra_camera, uri: 'https://github.com/orbbec/ros_astra_camera', version: 'master'}
 - git: {local-name: cartographer, uri: 'https://github.com/cartographer-project/cartographer.git', version: 'master'}
 - git: {local-name: cartographer_ros, uri: 'https://github.com/cartographer-project/cartographer_ros.git', version: 'master'}
