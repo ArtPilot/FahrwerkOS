@@ -3,13 +3,10 @@ version: '3'
 services:
   core:
     image: registry.al0.de/artpilot/ros:test
-    command: roscore
-    ports:
-      - "11311:11311"
+    command: roscore -p 11311 -v
     devices:
       - "/dev/rpilidar:/dev/ttyUSB0"
       - "/dev/ttyS0:/dev/serial0"
-
 
   # listener:
   #   build: ./
