@@ -2,7 +2,7 @@ version: '3'
 
 services:
   core:
-    image: registry.al0.de/artpilot/ros:test
+    image: registry.al0.de/artpilot/ros:test2
     command: /scripts/startup.sh
     volumes: 
       - ./scripts:/scripts
