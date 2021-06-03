@@ -38,6 +38,12 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
 COPY ./cartographer.launch /catkin_ws/src/cartographer_ros/cartographer_ros/launch
 COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configuration_files
 
+RUN bash -c "source /opt/ros/noetic/setup.bash \
+    && source /catkin_ws/devel/setup.bash \
+    && apt install -y ros-*-rgbd-launch ros-*-libuvc-camera \
+    && cd  /catkin_ws/src \
+    && git clone --depth 1 https://github.com/orbbec/ros_astra_camera"
+
 ## install mavproxy and mavros
 # TODO: enable hardware flow contrll in px4.launch
 # to rename the mavros serial device
@@ -52,3 +58,4 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && source devel/setup.bash"
 
 RUN apt-get purge -y modemmanager
+COPY bashrc /root/.ros_bashrc
