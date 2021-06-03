@@ -45,5 +45,5 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && cd /catkin_ws \
     && catkin build\
     && source devel/setup.bash"
-
+COPY load_ros_dev_env.sh /usr/bin
 RUN apt-get purge -y modemmanager
