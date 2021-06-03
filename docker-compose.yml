@@ -8,7 +8,7 @@ services:
       - "11311:11311"
     devices:
       - "/dev/rpilidar:/dev/ttyUSB0"
-      - "/dev/ttyAMA0:/dev/serial0"
+      - "/dev/ttyS0:/dev/serial0"
 
 
   # listener:
