@@ -3,7 +3,9 @@ version: '3'
 services:
   core:
     image: registry.al0.de/artpilot/ros:test
-    command: roscore -p 11311 -v
+    command: /scripts/startup.sh
+    volumes: 
+      - ./scripts:/scripts
     devices:
       - "/dev/rpilidar:/dev/ttyUSB0"
       - "/dev/ttyS0:/dev/serial0"
