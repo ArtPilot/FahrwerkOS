@@ -46,3 +46,4 @@ RUN bash -c "source /opt/ros/noetic/setup.bash \
     && catkin build\
     && source devel/setup.bash"
 
+RUN apt-get purge -y modemmanager
