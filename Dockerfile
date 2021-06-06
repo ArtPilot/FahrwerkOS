@@ -47,4 +47,4 @@ RUN apt-get purge -y modemmanager \
     && apt-get autoremove -y
 
 RUN bash -c "source /opt/ros/noetic/setup.bash; catkin build"
-
+RUN bash -c "echo 'source /catkin_ws/devel/setup.bash' >> /root/.bashrc"
