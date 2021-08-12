@@ -3,7 +3,7 @@ version: '3'
 
 services:
   core:
-    image: registry.al0.de/artpilot/ros:test2
+    image: registry.al0.de/artpilot/ros:rewrite
     command: /scripts/startup.sh
     container_name: ros
     network_mode: host
