@@ -10,6 +10,7 @@ services:
     environment:
       - "ROS_MASTER_URI=http://192.168.100.120:11311"
       - "ROS_IP=192.168.100.120"
+      # - "ROS_HOSTNAME=raspberrypi"
     extra_hosts:
       - "raspberrypi:192.168.100.120"
     volumes: 
