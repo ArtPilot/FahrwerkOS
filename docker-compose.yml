@@ -4,6 +4,7 @@ services:
   core:
     image: registry.al0.de/artpilot/ros:test
     command: /scripts/startup.sh
+    container_name: ros
     volumes: 
       - ./scripts:/scripts
     devices:
