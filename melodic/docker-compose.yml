@@ -1,0 +1,29 @@
+# production compose file
+version: '3'
+
+services:
+  core:
+    image: registry.al0.de/artpilot/ros:melodic
+    # command: /scripts/startup.sh
+    container_name: ros_melodic
+    network_mode: host
+    environment:
+      - "ROS_MASTER_URI=http://core:11311"
+    #   - "ROS_IP=192.168.100.120"
+      - "ROS_HOSTNAME=core"
+    extra_hosts:
+      - "core:192.168.100.120"
+    # volumes: 
+    #   - ./scripts:/scripts
+    # devices:
+    #     - "/dev/serial1:/dev/ttyACM0"
+    #   - "/dev/rpilidar:/dev/ttyUSB0"
+    #   - "/dev/astra_pro:/dev/astra_pro"
+    #   - "/dev/astrauvc:/dev/astrauvc"
+    restart: always
+
+  # listener:
+  #   build: ./
+  #   environment:
+  #     - "PYTHONUNBUFFERED=1"
+  #   command: ros2 run demo_nodes_py listener
