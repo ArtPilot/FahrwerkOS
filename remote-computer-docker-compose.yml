@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  core:
+    image: registry.al0.de/artpilot/ros:test3
+    network_mode: host
+    environment:
+      - "PYTHONUNBUFFERED=1"
+      - "ROS_MASTER_URI=http://192.168.100.120:11311"
+      - "ROS_IP=192.168.100.113"
+      - "DISPLAY=${DISPLAY}"
+    extra_hosts:
+      - "crystal:192.168.100.113"
+    #command: /scripts/startup.sh
+    volumes: 
+      - "/etc/group:/etc/group:ro"
+      - "/etc/passwd:/etc/passwd:ro"
+      - "/etc/shadow:/etc/shadow:ro"
+      - "/etc/sudoers.d:/etc/sudoers.d:ro"
+      - "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+      - "./scripts:/scripts"
+      - "/home/$USER:/home/$USER"
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri
+  # listener:
+  #   build: ./
+  #   environment:
+  #     - "PYTHONUNBUFFERED=1"
+  #   command: ros2 run demo_nodes_py listener
