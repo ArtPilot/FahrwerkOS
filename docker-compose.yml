@@ -5,6 +5,12 @@ services:
     image: registry.al0.de/artpilot/ros:test
     command: /scripts/startup.sh
     container_name: ros
+    network_mode: host
+    environment:
+      - "ROS_MASTER_URI=http://192.168.100.120:11311"
+      - "ROS_IP=192.168.100.120"
+    extra_hosts:
+      - "raspberrypi:192.168.100.120"
     volumes: 
       - ./scripts:/scripts
     devices:
