@@ -38,7 +38,8 @@ RUN bash -c "apt-get install -y python3-dev python3-opencv python3-wxgtk4.0 pyth
 RUN bash -c "source /opt/ros/noetic/setup.bash \
     && roscd mavros/launch \
     && sed -i \"/<\/node>/i\\\<remap from='\/mavros\/vision_pose\/pose\' to='\/robot_pose' \/\>\" ./node.launch \
-    && sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./px4_config.yaml"
+    && sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./px4_config.yaml" \
+    && sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./apm_config.yaml"
 
 COPY ./cartographer.launch /catkin_ws/src/cartographer_ros/cartographer_ros/launch
 COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configuration_files
