@@ -35,7 +35,7 @@ RUN bash -c "apt-get install -y python3-dev python3-opencv python3-wxgtk4.0 pyth
 # # to rename the mavros serial device
 # #     # && sed -i \"s/ttyACM0/pixhawk/\" ./px4.launch \
 # # TODO: quote the xml params in remap from singe to double
-RUN bash -c "source /opt/ros/noetic/setup.bash \
+RUN bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     && roscd mavros/launch \
     && sed -i \"/<\/node>/i\\\<remap from='\/mavros\/vision_pose\/pose\' to='\/robot_pose' \/\>\" ./node.launch \
     && sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./px4_config.yaml" \
