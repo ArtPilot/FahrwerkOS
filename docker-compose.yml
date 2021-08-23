@@ -15,12 +15,11 @@ services:
       - "raspberrypi:192.168.100.120"
     volumes: 
       - ./scripts:/scripts
-    restart: unless-stopped
     devices:
       - "/dev/serial0:/dev/ttyACM0"
-      # - "/dev/rpilidar:/dev/ttyUSB0"
-      # - "/dev/astra_pro:/dev/astra_pro"
-      # - "/dev/astrauvc:/dev/astrauvc"
+      - "/dev/rpilidar:/dev/ttyUSB0"
+      - "/dev/astra_pro:/dev/astra_pro"
+      - "/dev/astrauvc:/dev/astrauvc"
     restart: always
 
   # listener:
