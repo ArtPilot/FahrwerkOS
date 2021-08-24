@@ -16,11 +16,13 @@ services:
     volumes: 
       - ./scripts:/scripts
     devices:
+      - "/dev/bus/usb:/dev/bus/usb"
       - "/dev/serial0:/dev/ttyACM0"
       - "/dev/rpilidar:/dev/ttyUSB0"
       - "/dev/astra_pro:/dev/astra_pro"
       - "/dev/astrauvc:/dev/astrauvc"
     restart: always
+    privileged: yes
 
   # listener:
   #   build: ./
