@@ -27,7 +27,7 @@ RUN bash -c "rosdep update \
 # ## install mavproxy and mavros
 RUN bash -c "apt-get install -y python3-dev python3-opencv python3-wxgtk4.0 python3-pip python3-matplotlib python3-lxml python3-pygame \
     && pip3 install PyYAML mavproxy \
-    && apt-get install -y ros-noetic-mavros ros-noetic-mavros-extras  python3-catkin-tools python3-catkin-lint python3-pip \
+    && apt-get install -y ros-noetic-mavros ros-noetic-mavros-extras  python3-catkin-tools python3-catkin-lint python3-pip ros-robot-state-publisher \
     && /opt/ros/noetic/lib/mavros/install_geographiclib_datasets.sh \
     && pip3 install osrf-pycommon"
 
@@ -38,8 +38,8 @@ RUN bash -c "apt-get install -y python3-dev python3-opencv python3-wxgtk4.0 pyth
 RUN bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     && roscd mavros/launch \
     && sed -i \"/<\/node>/i\\\<remap from='\/mavros\/vision_pose\/pose\' to='\/robot_pose' \/\>\" ./node.launch \
-    && sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./px4_config.yaml" \
     && sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./apm_config.yaml"
+    #&& sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./apm_config.yaml"
 
 COPY ./cartographer.launch /catkin_ws/src/cartographer_ros/cartographer_ros/launch
 COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configuration_files

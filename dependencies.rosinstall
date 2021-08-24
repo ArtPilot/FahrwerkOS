@@ -3,3 +3,4 @@
 - git: {local-name: ros_astra_camera, uri: 'https://github.com/orbbec/ros_astra_camera', version: 'master'}
 - git: {local-name: cartographer, uri: 'https://github.com/cartographer-project/cartographer.git', version: 'master'}
 - git: {local-name: cartographer_ros, uri: 'https://github.com/cartographer-project/cartographer_ros.git', version: 'master'}
+- git: {local-name: gbot_core, uri: 'https://github.com/ArtPilot/gbot_core.git', version: 'main'}
