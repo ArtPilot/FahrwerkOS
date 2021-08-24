@@ -16,8 +16,9 @@ RUN bash -c 'curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.
 COPY dependencies.rosinstall /dependencies.rosinstall
 RUN bash -c "wstool init src /dependencies.rosinstall \
              && wstool update -t src \
-             && sed -i 's/is_stamped, false/is_stamped, true/g' src/robot_pose_publisher/src/robot_pose_publisher.cpp \
+            #  && sed -i 's/is_stamped, false/is_stamped, true/g' src/robot_pose_publisher/src/robot_pose_publisher.cpp \
              && sed -i 's/libuvc/libuvc-dev/' src/ros_astra_camera/package.xml" 
+
 
 RUN bash -c "rosdep update \
              && apt-get update \
@@ -37,12 +38,12 @@ RUN bash -c "apt-get install -y python3-dev python3-opencv python3-wxgtk4.0 pyth
 # # TODO: quote the xml params in remap from singe to double
 RUN bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     && roscd mavros/launch \
-    && sed -i \"/<\/node>/i\\\<remap from='\/mavros\/vision_pose\/pose\' to='\/robot_pose' \/\>\" ./node.launch \
     && sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./apm_config.yaml"
+    #&& sed -i \"/<\/node>/i\\\<remap from='\/mavros\/vision_pose\/pose\' to='\/robot_pose' \/\>\" ./node.launch \
     #&& sed -i \"s/timesync_rate: 10.0/timesync_rate: 0.0/\" ./apm_config.yaml"
 
-COPY ./cartographer.launch /catkin_ws/src/cartographer_ros/cartographer_ros/launch
-COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configuration_files
+# COPY ./cartographer.launch /catkin_ws/src/cartographer_ros/cartographer_ros/launch
+# COPY ./cartographer.lua /catkin_ws/src/cartographer_ros/cartographer_ros/configuration_files
 
 RUN apt-get purge -y modemmanager \
     && apt-get autoremove -y
