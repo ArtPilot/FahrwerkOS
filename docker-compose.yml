@@ -10,17 +10,22 @@ services:
     environment:
       - "ROS_MASTER_URI=http://192.168.100.120:11311"
       - "ROS_IP=192.168.100.120"
+      - "LD_LIBRARY_PATH=/opt/vc/lib"
       # - "ROS_HOSTNAME=raspberrypi"
     extra_hosts:
       - "raspberrypi:192.168.100.120"
     volumes: 
       - ./scripts:/scripts
+      - /opt/vc:/opt/vc
     devices:
       - "/dev/bus/usb:/dev/bus/usb"
       - "/dev/serial0:/dev/ttyACM0"
       - "/dev/rpilidar:/dev/ttyUSB0"
       - "/dev/astra_pro:/dev/astra_pro"
       - "/dev/astrauvc:/dev/astrauvc"
+      - "/dev/vchiq:/dev/vchiq"
+      - "/dev/video0:/dev/video0"
+      - "/dev/ps3eye:/dev/ps3eye"
     restart: always
     privileged: yes
 
