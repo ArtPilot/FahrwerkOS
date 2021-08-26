@@ -23,8 +23,8 @@ RUN apt-get update
 COPY dependencies.rosinstall /dependencies.rosinstall
 RUN bash -c "wstool init src /dependencies.rosinstall \
              && wstool update -t src \
-            #  && sed -i 's/is_stamped, false/is_stamped, true/g' src/robot_pose_publisher/src/robot_pose_publisher.cpp \
              && sed -i 's/libuvc/libuvc-dev/' src/ros_astra_camera/package.xml" 
+            #  && sed -i 's/is_stamped, false/is_stamped, true/g' src/robot_pose_publisher/src/robot_pose_publisher.cpp \
 
 RUN rosdep update
 RUN rosdep install --from-paths src/rplidar_ros --rosdistro=${ROS_DISTRO} -y
@@ -67,3 +67,4 @@ RUN bash -c "source /catkin_ws/devel/setup.bash\
 
 RUN apt-get autoremove -y
 RUN apt-get install -y ros-noetic-web-video-server ros-noetic-usb-cam libcamera-info-manager0d ros-noetic-cv-camera ros-noetic-video-stream-opencv
+COPY ./host_os/* /etc/udev/rules.d/
