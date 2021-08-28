@@ -36,9 +36,56 @@
      <child link="base_link"/>
    </joint>
 
+   <link name="right_stand">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="1.665"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.8325"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_right_stand" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_stand"/>
+    <origin xyz="-0.2 -0.4 0.28"/>
+  </joint>
+
+  <link name="left_stand">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="1.665"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.8325"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_left_stand" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_stand"/>
+    <origin xyz="-0.2 0.4 0.28"/>
+  </joint>
+
+  <link name="bridge_stand">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="0.8"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+
+  <joint name="bridge_stand_to_left_stand" type="fixed">
+    <parent link="left_stand"/>
+    <child link="bridge_stand"/>
+    <origin xyz="0 -0.4 1.665"/>
+  </joint>
+
+
     <link name="laser">
         <visual>
-            <origin rpy="0 0 0" xyz="0 0 0.375"/>
+            <origin rpy="0 0 0" xyz="0 0 0.03"/>
             <geometry>
                 <cylinder radius="0.07" length="0.03"/>
             </geometry>
@@ -48,56 +95,10 @@
 
 
   <joint name="laser_joint" type="fixed">
-    <parent link="base_link" />
+    <parent link="bridge_stand" />
     <child link="laser" />
-    <origin rpy="0 0 1.57075" xyz="0 0 0.375" />
+    <origin rpy="0 0 1.57075" xyz="0 0 0.04" />
   </joint>
 
-
-   <link name="right_stand">
-    <visual>
-      <geometry>
-        <cylinder radius="0.04" length="1.665"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="-0.2 -0.4 0.8325"/>
-    </visual>
-  </link>
-
-  <joint name="base_to_right_stand" type="fixed">
-    <parent link="base_link"/>
-    <child link="right_stand"/>
-    <origin xyz="0 0 0.28"/>
-  </joint>
-
-  <link name="left_stand">
-    <visual>
-      <geometry>
-        <cylinder radius="0.04" length="1.665"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="-0.2 0.4 0.8325"/>
-    </visual>
-  </link>
-
-  <joint name="base_to_left_stand" type="fixed">
-    <parent link="base_link"/>
-    <child link="left_stand"/>
-    <origin xyz="0 0 0.28"/>
-  </joint>
-
-  <link name="bridge_stand">
-    <visual>
-      <geometry>
-        <cylinder radius="0.04" length="0.8"/>
-      </geometry>
-      <origin rpy="1.5708 0 0" xyz="-0.2 0 1.661"/>
-    </visual>
-  </link>
-
-
-  <joint name="bridge_stand_to_left_stand" type="fixed">
-    <parent link="left_stand"/>
-    <child link="bridge_stand"/>
-    <origin xyz="0 0 0"/>
-  </joint>
     
 </robot>
