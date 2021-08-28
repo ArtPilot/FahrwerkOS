@@ -101,7 +101,7 @@
   <joint name="laser_joint" type="fixed">
     <parent link="bridge_stand" />
     <child link="laser" />
-    <origin rpy="0 0 1.57075" xyz="0 0 0.04" />
+    <origin rpy="0 0 3.14159" xyz="0 0 0.04" />
   </joint>
   
     <link name="camera_link">
@@ -114,13 +114,11 @@
         </visual>
     </link>
 
-    
-
     <joint name="camera_joint" type="fixed">
         <parent link="bridge_stand"/>
         <child link="camera_link"/>
-        <origin rpy="0 0 0" xyz="0.047 0.0 0.0"/>
-        <axis xyz="1 0 0" />
+        <origin rpy="0 2.740164 3.14159" xyz="0.047 0.0 0.0"/>
+        <axis xyz="0 0 0" />
     </joint>
 
 
