@@ -7,6 +7,10 @@
   <material name="gray">
     <color rgba="0.2 0.2 0.2 1" />
   </material>
+
+  <material name="blue">
+    <color rgba="0 1 0 1" />
+  </material>
   
    <link name="dummy">
    </link>
@@ -99,6 +103,25 @@
     <child link="laser" />
     <origin rpy="0 0 1.57075" xyz="0 0 0.04" />
   </joint>
+  
+    <link name="camera_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.05 0.05 0.05"/>
+            </geometry>
+            <material name="blue" />
+        </visual>
+    </link>
 
     
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="bridge_stand"/>
+        <child link="camera_link"/>
+        <origin rpy="0 0 0" xyz="0.047 0.0 0.0"/>
+        <axis xyz="1 0 0" />
+    </joint>
+
+
 </robot>
