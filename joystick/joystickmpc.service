@@ -1,0 +1,14 @@
+[Unit]
+Description=joystickmpc
+
+[Service]
+WorkingDirectory=/home/a0n/ros/joystick
+Type=simple
+ExecStart=/home/a0n/ros/joystick/js_linux.py
+LimitNOFILE=65536
+Restart=on-failure
+RestartSec=2
+User=a0n
+
+[Install]
+WantedBy=multi-user.target
