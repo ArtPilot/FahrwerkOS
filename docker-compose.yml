@@ -15,13 +15,16 @@ services:
       - "raspberrypi:192.168.100.120"
     volumes: 
       - ./scripts:/scripts
-    restart: unless-stopped
+      - ./urdf:/catkin_ws/src/gbot_core/urdf
     devices:
-      - "/dev/serial0:/dev/ttyACM0"
-      # - "/dev/rpilidar:/dev/ttyUSB0"
-      # - "/dev/astra_pro:/dev/astra_pro"
-      # - "/dev/astrauvc:/dev/astrauvc"
+      - "/dev/bus/usb:/dev/bus/usb"
+      - "/dev/serial0:/dev/pixhawk"
+      - "/dev/rpilidar:/dev/ttyUSB0"
+      - "/dev/astra_pro:/dev/astra_pro"
+      - "/dev/astrauvc:/dev/astrauvc"
+        #- "/dev/ps3eye:/dev/ps3eye"
     restart: always
+    privileged: yes
 
   # listener:
   #   build: ./
